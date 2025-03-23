@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators in PHP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Operators in PHP</h1>
+    </header>
+    <div class="container">
+        <h2>Introduction to Operators</h2>
+        <p>In PHP, operators are special symbols that perform operations on variables and values. They allow you to manipulate data, perform calculations, compare values, and much more. PHP supports several types of operators, categorized as follows:</p>
+
+        <div class="subtopics">
+            <h3>1. Arithmetic Operators</h3>
+            <p>Arithmetic operators are used to perform basic mathematical operations on numeric values. The common arithmetic operators are:</p>
+            <ul>
+                <li><strong>+</strong>: Addition</li>
+                <li><strong>-</strong>: Subtraction</li>
+                <li><strong>*</strong>: Multiplication</li>
+                <li><strong>/</strong>: Division</li>
+                <li><strong>%</strong>: Modulus (remainder after division)</li>
+                <li><strong>**</strong>: Exponentiation (raising a number to the power of another)</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $a = 10;<br>
+                    $b = 20;<br>
+                    $sum = $a + $b;  // 30<br>
+                    $diff = $b - $a; // 10<br>
+                    $prod = $a * $b; // 200<br>
+                    $div = $b / $a;  // 2<br>
+                    $mod = $b % $a;  // 0<br>
+                    $exp = $a ** 2;  // 100<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>2. Assignment Operators</h3>
+            <p>Assignment operators are used to assign values to variables. In addition to simple assignment, they can also perform arithmetic operations and assign the result to the variable:</p>
+            <ul>
+                <li><strong>=</strong>: Simple assignment</li>
+                <li><strong>+=</strong>: Add and assign</li>
+                <li><strong>-=</strong>: Subtract and assign</li>
+                <li><strong>*=</strong>: Multiply and assign</li>
+                <li><strong>/=</strong>: Divide and assign</li>
+                <li><strong>%=</strong>: Modulus and assign</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $x = 5;<br>
+                    $x += 10;    // x = x + 10; (15)<br>
+                    $x -= 3;     // x = x - 3; (12)<br>
+                    $x *= 2;     // x = x * 2; (24)<br>
+                    $x /= 4;     // x = x / 4; (6)<br>
+                    $x %= 2;     // x = x % 2; (0)<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>3. Comparison Operators</h3>
+            <p>Comparison operators are used to compare two values. They return a boolean value (true or false) based on the comparison:</p>
+            <ul>
+                <li><strong>==</strong>: Equal</li>
+                <li><strong>!=</strong>: Not equal</li>
+                <li><strong>===</strong>: Identical (equal in value and type)</li>
+                <li><strong>!==</strong>: Not identical</li>
+                <li><strong>&lt;</strong>: Less than</li>
+                <li><strong>&gt;</strong>: Greater than</li>
+                <li><strong>&lt;=</strong>: Less than or equal to</li>
+                <li><strong>&gt;=</strong>: Greater than or equal to</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $a = 10;<br>
+                    $b = 20;<br>
+                    $result1 = ($a == $b); // false<br>
+                    $result2 = ($a != $b); // true<br>
+                    $result3 = ($a &lt; $b); // true<br>
+                    $result4 = ($a &gt;= $b); // false<br>
+                    $result5 = ($a === '10'); // true (same value and type)<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>4. Logical Operators</h3>
+            <p>Logical operators are used to combine conditional statements. They return a boolean result based on the logic of the conditions:</p>
+            <ul>
+                <li><strong>&&</strong>: Logical AND (true if both operands are true)</li>
+                <li><strong>||</strong>: Logical OR (true if at least one operand is true)</li>
+                <li><strong>!</strong>: Logical NOT (inverts the boolean value)</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $a = true;<br>
+                    $b = false;<br>
+                    $result1 = $a && $b; // false<br>
+                    $result2 = $a || $b; // true<br>
+                    $result3 = !$a;      // false<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>5. Increment/Decrement Operators</h3>
+            <p>Increment and decrement operators are used to increase or decrease the value of a variable by 1:</p>
+            <ul>
+                <li><strong>++</strong>: Increment (increases value by 1)</li>
+                <li><strong>--</strong>: Decrement (decreases value by 1)</li>
+            </ul>
+            <p>These can be used as prefix or postfix:</p>
+            <ul>
+                <li><strong>++$x</strong>: Increments $x and then returns its value</li>
+                <li><strong>$x++</strong>: Returns the value of $x and then increments it</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $x = 5;<br>
+                    $x++;  // x is now 6<br>
+                    $y = ++$x; // y is 7, x is 7<br>
+                    $x--;  // x is now 6<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>6. String Operators</h3>
+            <p>String operators are used to concatenate (join) strings together:</p>
+            <ul>
+                <li><strong>.</strong>: Concatenation operator</li>
+                <li><strong>.=</strong>: Concatenation assignment operator</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $str1 = "Hello";<br>
+                    $str2 = "World";<br>
+                    $greeting = $str1 . " " . $str2; // "Hello World"<br>
+                    $greeting .= "!"; // "Hello World!"<br>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics">
+            <h3>7. Array Operators</h3>
+            <p>Array operators are used to compare arrays. They allow you to determine the relationship between two arrays:</p>
+            <ul>
+                <li><strong>+</strong>: Union (combines two arrays)</li>
+                <li><strong>==</strong>: Equality (checks if arrays have the same key/value pairs)</li>
+                <li><strong>===</strong>: Identical (checks if arrays have the same key/value pairs in the same order and of the same type)</li>
+            </ul>
+            <p>** Example:</p>
+            <div class="code">
+                <code>
+                    $array1 = array("a" => "apple", "b" => "banana");<br>
+                    $array2 = array("b" => "banana", "c" => "cherry");<br>
+                    $result1 = $array1 + $array2; // Union<br>
+                    $result2 = $array1 == $array2; // Equality<br>
+                </code>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Code Corner. Learn PHP Operators Effectively!</p>
+    </footer>
+</body>
+</html>

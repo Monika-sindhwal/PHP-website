@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP File Handling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>File Handling</h1>
+    </header>
+
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>
+            File handling is an important part of any web application. It helps you to store data in a controlled manner that you can use in the future. Storing data on the server is essential in web applications because it allows you to make data "persist," meaning it sticks around between page accesses.
+        </p>
+
+        <div class="subtopics" id="topic1">
+            <h3>File Modes</h3>
+            <p>
+                File modes in PHP dictate how a file can be accessed when it is opened. Each mode specifies whether the file is opened for reading, writing, or both, and whether the existing content of the file is preserved or truncated. Understanding file modes is crucial for effective file management, as using the wrong mode can lead to data loss or unintended behavior.
+            </p>
+            <h4>Common File Modes:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>'r'</strong></td>
+                        <td>Opens for reading only. The file pointer is placed at the beginning. The file must exist; otherwise, the function fails.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'r+'</strong></td>
+                        <td>Opens for reading and writing. The file pointer is at the beginning. The file must exist; otherwise, the function fails.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'w'</strong></td>
+                        <td>Opens for writing only. If the file exists, it truncates the file to zero length; if it doesn’t exist, a new file is created.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'w+'</strong></td>
+                        <td>Opens for reading and writing. Similar to 'w', it truncates the file to zero length or creates a new one.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'a'</strong></td>
+                        <td>Opens for writing only. Writes data at the end of the file without truncating it. If the file does not exist, it creates a new one.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'a+'</strong></td>
+                        <td>Opens for reading and writing. Data can be appended to the end of the file, and the file pointer starts at the end.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'x'</strong></td>
+                        <td>Creates and opens for writing only. Returns FALSE if the file already exists, preventing accidental overwriting.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'x+'</strong></td>
+                        <td>Creates and opens for reading and writing. Returns FALSE if the file already exists.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'c'</strong></td>
+                        <td>Opens for writing only. It does not truncate the file, meaning the content remains intact. A new file is created if it doesn’t exist.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>'c+'</strong></td>
+                        <td>Opens for reading and writing without truncating it, allowing both operations while keeping the existing data.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="subtopics" id="topic2">
+            <h3>PHP Open File - fopen()</h3>
+            <p>
+                The <code>fopen()</code> function is a fundamental PHP function used to open files for various purposes, such as reading or writing. It provides the ability to specify the mode of access, allowing developers to interact with files in a controlled manner. The function returns a file pointer resource that can be used in subsequent file operations.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> When opening a configuration file that needs to be read and potentially modified, using <code>fopen()</code> in <code>'r+'</code> mode allows the script to read the current settings and write back any changes without losing the existing data.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>&lt;?php
+$myfile = fopen("config.txt", "r+") or die("Unable to open file!");
+?&gt;</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic3">
+            <h3>PHP Read File - fread()</h3>
+            <p>
+                The <code>fread()</code> function reads a specified number of bytes from an open file. It requires two parameters: the file pointer returned by <code>fopen()</code> and the maximum number of bytes to read. This function is essential for retrieving data from files, particularly when you need to read large amounts of data or specific portions of a file.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> You may use <code>fread()</code> to read the entire content of a text file for processing or displaying on a webpage. It's often used in conjunction with <code>filesize()</code> to ensure all data is read.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>$content = fread($myfile, filesize("example.txt"));</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic4">
+            <h3>PHP Close File - fclose()</h3>
+            <p>
+                The <code>fclose()</code> function is used to close an open file pointer. Properly closing files is important to free system resources and prevent data corruption. This function takes a single parameter: the file pointer to be closed. Failing to close files may lead to resource leaks and other unintended behavior in applications.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> After performing file operations, using <code>fclose()</code> ensures that all buffers are flushed and resources are released:
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>fclose($myfile);</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic5">
+            <h3>PHP Check End-Of-File - feof()</h3>
+            <p>
+                The <code>feof()</code> function checks if the end-of-file (EOF) has been reached for an open file. This function returns TRUE if the end of the file has been reached, and FALSE otherwise. It is commonly used in loops to read data until the end of the file is encountered, allowing scripts to process files of unknown lengths safely.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> In scenarios where data needs to be read line by line, <code>feof()</code> helps prevent reading past the end of the file, which can cause errors.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>while (!feof($myfile)) {
+    echo fgets($myfile) . "&lt;br&gt;";
+}</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic6">
+            <h3>PHP Read Single Line - fgets()</h3>
+            <p>
+                The <code>fgets()</code> function reads a single line from a file. It is useful for extracting data line-by-line, especially when processing text files or logs. It reads until a newline character or end-of-file is reached, making it suitable for parsing structured text data.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> To display user records stored in a text file, <code>fgets()</code> can be used to retrieve each record line by line, allowing easy processing or displaying on a webpage.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>echo fgets($myfile);</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic7">
+            <h3>PHP Read Single Character - fgetc()</h3>
+            <p>
+                The <code>fgetc()</code> function reads a single character from an open file. It continues reading until the end of the file is reached. This function is often used for parsing files character by character, which can be helpful in certain text-processing applications, such as analyzing file formats or performing custom parsing logic.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> When analyzing a text file for specific characters or sequences, <code>fgetc()</code> allows developers to handle files at a granular level.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>while (!feof($myfile)) {
+    echo fgetc($myfile);
+}</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic8">
+            <h3>PHP file_exists() Function</h3>
+            <p>
+                The <code>file_exists()</code> function checks if a specified file or directory exists on the filesystem. It returns TRUE if the file or directory exists, and FALSE otherwise. This function is crucial for file handling, as it prevents errors by allowing scripts to check for the existence of files before attempting to open or manipulate them.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> Before trying to read or write to a file, you can use <code>file_exists()</code> to ensure the file is available, thereby avoiding runtime errors.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>if (file_exists("webdictionary.txt")) {
+    echo "File exists.";
+} else {
+    echo "File does not exist.";
+}</pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic9">
+            <h3>PHP filesize() Function</h3>
+            <p>
+                The <code>filesize()</code> function returns the size of a specified file in bytes. This information can be useful for validating file contents, checking storage limits, or determining how much data needs to be processed. It returns FALSE if the file does not exist or if there is an error.
+            </p>
+            <p>
+                <strong>Example Use Case:</strong> When uploading files, <code>filesize()</code> can help check the file size against allowed limits to prevent excessive uploads.
+            </p>
+            <div class="code">
+                <code class="code1">
+                    <pre>echo filesize("example.txt");</pre>
+                </code>
+            </div>
+        </div>
+
+      
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background-color: rgba(0, 0, 0, 0.6);">
+        <p>&copy; 2024 Code Corner. Join us in exploring the world of PHP!</p>
+    </footer>
+    
+</body>
+
+</html>

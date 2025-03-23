@@ -1,0 +1,55 @@
+*{
+    overflow: hidden;
+}
+.nav{
+    width:100vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #212529; ;
+}
+nav img {
+height: 7vh;
+/* width: 54px; */
+width: 4vw;
+border-radius: 50%;
+}
+.navsub{
+    width:90vw;
+display: flex;
+align-items: center;
+justify-content: space-around;
+;
+}
+.navsub a{
+    text-decoration: none;
+    color:white;
+}
+a:hover {
+    color:#ff4d4dd6; ;
+}
+#left{
+    width:30vw;
+    border-right: 0.5vw solid #212529;
+        height: 90vh;
+}
+#right{
+    width:80vw;
+   
+    height: 90vh;
+}
+.main{
+    display: flex;
+    margin-top: 2vh;
+
+}
+#left ::-webkit-scrollbar{
+    display: none;
+}
+#right ::-webkit-scrollbar{
+    display: none;
+}
+ul li{
+    color: black;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications Overview</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #333333;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+<body>
+    <header>
+        <h1>Forms</h1>
+    </header>
+
+    <div class="container">
+        <h2>Introduction to Forms</h2>
+        <div class="subtopics" id="topic1">
+            <h3>Forms Overview</h3>
+            
+            <p>
+                In PHP, forms are essential tools for interacting with users and collecting data. They allow users to input information, which can then be processed by a PHP script.
+                <br>
+                To retrieve form data, PHP provides superglobals like <code>$_GET</code> and <code>$_POST</code>.
+                <br><br>
+                The form submission method can be either GET or POST. To access data from a GET request, use <code>$_GET</code>. For data from a POST request, use <code>$_POST</code>.
+                <br>
+                The HTML <code>&lt;form></code> tag is used to create forms. The syntax for using this tag is:
+            </p>
+
+            <code class="code1">
+                <h3>Syntax:</h3>
+                <pre>
+                    &lt;form action="script_url" method="GET/POST">
+                         form elements
+                    &lt;/form>
+                </pre>
+            </code> 
+        </div>
+
+        <div class="subtopics" id="topic2">
+            <h3>Form Attributes</h3>
+            <p>
+                In HTML, the <code>&lt;form></code> tag has various attributes to define how form data is handled. Two essential attributes are <strong>action</strong> and <strong>method</strong>.
+                <br>
+                <span>Action:</span> Specifies the URL where form data should be sent after submission, often pointing to a PHP script for processing.
+                <br>
+                <span>Method:</span> Specifies how form data is sent. The main options are GET and POST.
+            </p>
+            
+            <ul>
+                <li><strong>GET:</strong> Data is sent in the URL as parameters, visible in the address bar. Best for non-sensitive data, such as search queries.</li>
+                <code class="code1">
+                    <h3>Example:</h3>
+                    <pre>
+                        &lt;form action="search.php" method="get">
+                            &lt;label for="query">Search:&lt;/label>
+                            &lt;input type="text" id="query" name="query">
+                            &lt;input type="submit" value="Search">
+                        &lt;/form>
+                    </pre>
+                </code> 
+
+                <li><strong>POST:</strong> Data is sent in the HTTP request body, not visible in the address bar. Ideal for sensitive data like passwords.</li>
+                <code class="code1">
+                    <h3>Example:</h3>
+                    <pre>
+                        &lt;form action="submit.php" method="post">
+                            &lt;label for="query">Search:&lt;/label>
+                            &lt;input type="text" id="query" name="query">
+                            &lt;input type="submit" value="Search">
+                        &lt;/form>
+                    </pre>
+                </code>
+            </ul>
+        </div>
+
+        <div class="subtopics" id="topic3">
+            <h3>HTML Form Controls</h3>
+            <p>
+                HTML forms offer various controls to gather data from users. Here are commonly used controls:
+            </p>
+            <ul>
+                <li>Text Fields</li>
+                <li>Text Areas</li>
+                <li>Checkboxes</li>
+                <li>Radio Buttons</li>
+                <li>Select Boxes (Dropdowns)</li>
+                <li>Hidden Fields</li>
+                <li>Submit and Reset Buttons</li>
+            </ul>
+
+            <code class="code1">
+                <pre>
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+&lt;meta charset="UTF-8">
+&lt;title>HTML Form Controls Example&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;h3>HTML Forms Control&lt;/h3>
+&lt;form action="process.php" method="post">
+    <!-- Text Field -->
+    &lt;label for="name">Name:&lt;/label>
+    &lt;input type="text" id="name" name="name" required><br><br>
+    
+    <!-- Text Area -->
+    &lt;label for="message">Message:&lt;/label><br>
+    &lt;textarea id="message" name="message" rows="4" cols="50" required>&lt;/textarea><br><br>
+    
+    <!-- Checkbox -->
+    &lt;label>Choose your hobbies:&lt;/label><br>
+    &lt;input type="checkbox" name="hobbies[]" value="Reading">Reading
+    &lt;input type="checkbox" name="hobbies[]" value="Traveling">Traveling
+    &lt;input type="checkbox" name="hobbies[]" value="Music">Music<br><br>
+    
+    <!-- Radio Button -->
+    &lt;label>Gender:&lt;/label><br>
+    &lt;input type="radio" name="gender" value="Male" required>Male
+    &lt;input type="radio" name="gender" value="Female" required>Female<br><br>
+    
+    <!-- Select Box -->
+    &lt;label for="country">Country:&lt;/label>
+    &lt;select id="country" name="country" required>
+        &lt;option value="India">India&lt;/option>
+        &lt;option value="USA">USA&lt;/option>
+        &lt;option value="UK">UK&lt;/option>
+    &lt;/select><br><br>
+    
+    <!-- Hidden Control -->
+    &lt;input type="hidden" name="hiddenValue" value="12345">
+    
+    <!-- Submit and Reset Buttons -->
+    &lt;input type="submit" value="Submit">
+    &lt;input type="reset" value="Reset">
+&lt;/form>
+&lt;/body>
+&lt;/html>
+                </pre>
+            </code>
+        </div>
+
+        <div class="subtopics" id="topic4">
+            <h3>Superglobal Variables in PHP</h3>
+            <p>
+                PHP provides several superglobal variables to handle data in different contexts. Here’s a quick overview:
+            </p>
+            <table>
+                <tr>
+                    <th>Superglobal Variable</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td><code>$_GLOBALS</code></td>
+                    <td>Accesses global variables from anywhere in the script.</td>
+                </tr>
+                <tr>
+                    <td><code>$_SERVER</code></td>
+                    <td>Contains server details, headers, paths, and script locations.</td>
+                </tr>
+                <tr>
+                    <td><code>$_GET</code></td>
+                    <td>Data from a GET request, used to retrieve form data sent in the URL.</td>
+                </tr>
+                <tr>
+                    <td><code>$_POST</code></td>
+                    <td>Data from a POST request, ideal for secure form submissions.</td>
+                </tr>
+                <tr>
+                    <td><code>$_FILES</code></td>
+                    <td>Details of uploaded files, such as name, size, and error status.</td>
+                </tr>
+                <tr>
+                    <td><code>$_COOKIE</code></td>
+                    <td>Contains cookie data sent by the client’s browser.</td>
+                </tr>
+                <tr>
+                    <td><code>$_SESSION</code></td>
+                    <td>Stores session variables, persisting data across multiple pages.</td>
+                </tr>
+                <tr>
+                    <td><code>$_REQUEST</code></td>
+                    <td>Combines data from <code>$_GET</code>, <code>$_POST</code>, and <code>$_COOKIE</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>$_ENV</code></td>
+                    <td>Environment variables, often containing server configuration data.</td>
+                </tr>
+            </table>
+        </div>
+
+       
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background-color: rgba(0, 0, 0, 0.6);">
+        <p>&copy; 2024 Code Corner. Join us in exploring the world of PHP!</p>
+    </footer>
+    
+</body>
+</html>

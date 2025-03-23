@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Corner</title>
+    <style>
+        body {
+            background-image: url(slide-01.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .first{
+            color: #ff4d4d;
+        }
+        
+        .nav {
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5vw;
+            background-color: rgba(0, 0, 0, 0.6); 
+        }
+       
+        nav img {
+            height: 7vh;
+            width: 4vw;
+            border-radius: 50%;
+        }
+        
+        .nav ul {
+            display: flex;
+            gap: 4vw;
+            list-style: none;
+        }
+
+        .nav ul li {
+            font-size: 1.1rem;
+        }
+        .nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav ul li a:hover {
+            color: #ff4d4d;
+        }
+
+        .main {
+            text-align: left;
+        }
+        .tagline {
+            color: white;   
+        }
+        .para {
+            color: white;
+        }
+        .left {
+            width: 40vw;
+            margin-left: 5vw;
+            font-size: larger;
+            margin-top: 30vh;
+        }
+        button {
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 5px;
+            background-color: #00a096;
+            margin-bottom: 20px;
+            width: 17vw;
+            border: none;
+            cursor: pointer;
+        }
+        button a {
+            text-decoration: none;
+            font-size: larger;
+            font-weight: 900;
+            color: white;
+        }
+        button:hover {
+            background-color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <img src="download.png" alt="Logo" class="logo">
+        <ul>
+            <li><a href="content.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="more.html">More Info</a></li>
+        </ul>
+    </nav>
+    <section class="main">
+        <div class="left">
+            <h1 class="tagline">Welcome to <span class="first">CODE CORNER</span>!</h1>
+            <p class="para">
+                At Code Corner, dive into the world of PHP with engaging tutorials and practical exercises. Whether you’re a beginner or seeking to improve your skills, we’re here to help you turn your ideas into dynamic web applications!
+            </p>
+            <button class="button"><a href="content.html">Start Learning</a></button>
+        </div> 
+    </section>
+    
+</body>
+</html>

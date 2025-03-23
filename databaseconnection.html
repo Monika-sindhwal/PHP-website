@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP MySQL Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PHP and MySQL Database Guide</h1>
+    </header>
+
+    <div class="container">
+        <h2>Getting Started with MySQL and PHP</h2>
+        <p>PHP is a powerful language for handling MySQL databases, enabling you to store and retrieve data dynamically. This guide covers basic database operations, including connecting, creating, querying, updating, and deleting data.</p>
+
+        <div class="subtopics" id="topic1">
+            <h3>Database Queries Overview</h3>
+            <p>A query is a command that retrieves data from or modifies a database. The following example demonstrates a simple SELECT query that fetches all entries in the "LastName" column from an "Employees" table:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+SELECT LastName FROM Employees;
+                    </pre>
+                </code>
+            </div>
+            <p>This query is foundational for more advanced queries, allowing you to select specific data from tables.</p>
+        </div>
+
+        <div class="subtopics" id="topic2">
+            <h3>Connecting to a MySQL Database</h3>
+            <p>To access data in MySQL, you first need to connect to the database server. The example below demonstrates how to connect to a local MySQL server:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+&lt;?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+                    </pre>
+                </code>
+            </div>
+            <p>Ensure that your database credentials (username, password) are accurate to successfully establish a connection.</p>
+        </div>
+
+        <div class="subtopics" id="topic3">
+            <h3>Creating a MySQL Database</h3>
+            <p>Once connected, you can create a database using the CREATE DATABASE statement:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+&lt;?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+
+$conn = new mysqli($servername, $username, $password);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "CREATE DATABASE myDB";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+$conn->close();
+?>
+                    </pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic4">
+            <h3>Creating Tables in MySQL</h3>
+            <p>Tables store data within databases. Here’s an example of creating a table named "MyGuests" with specific columns:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+CREATE TABLE MyGuests (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+                    </pre>
+                </code>
+            </div>
+            <p>This table structure includes an "id" column as the primary key and columns for storing a user's first name, last name, email, and registration date.</p>
+        </div>
+
+        <div class="subtopics" id="topic5">
+            <h3>Inserting Data into Tables</h3>
+            <p>Use the INSERT INTO statement to add new records to a table. Here’s a syntax example:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+                    </pre>
+                </code>
+            </div>
+            <p>Below is a PHP example that inserts a new record into the "MyGuests" table:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+&lt;?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "myDB";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>
+                    </pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic6">
+            <h3>Retrieving Data from Tables</h3>
+            <p>Use the SELECT statement to retrieve data from tables. To fetch specific columns, use the following syntax:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+SELECT column_name(s) FROM table_name;
+                    </pre>
+                </code>
+            </div>
+            <p>Or, use "*" to select all columns:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+SELECT * FROM table_name;
+                    </pre>
+                </code>
+            </div>
+            <p>The PHP example below retrieves and displays the "id," "firstname," and "lastname" from the "MyGuests" table:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+&lt;?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "myDB";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+                    </pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="subtopics" id="topic7">
+            <h3>Deleting Data from a Table</h3>
+            <p>To remove records, use the DELETE statement with a WHERE clause to specify the condition:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+DELETE FROM table_name WHERE some_column = some_value;
+                    </pre>
+                </code>
+            </div>
+            <p>Example: The following PHP code deletes a record with ID 3 from the "MyGuests" table:</p>
+            <div class="code">
+                <code class="code1">
+                    <pre>
+&lt;?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "myDB";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "DELETE FROM MyGuests WHERE id=3";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+
+$conn->close();
+?>
+                    </pre>
+                </code>
+            </div>
+        </div>
+
+      
+    </div>
+    
+    <footer style="text-align: center; padding: 20px; background-color: rgba(0, 0, 0, 0.6);">
+      <p>&copy; 2024 Code Corner. Join us in exploring the world of PHP!</p>
+  </footer>
+  
+</body>
+</html>
